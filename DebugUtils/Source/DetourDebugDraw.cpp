@@ -22,26 +22,6 @@
 #include "DetourCommon.h"
 #include "DetourNode.h"
 
-static unsigned int duPolyToColDefault(const struct dtPoly* p, int alpha)
-{
-	if (p->getArea() == 0)
-	{
-		// Treat zero area type as default.
-		return duRGBA(0, 192, 255, alpha);
-	}
-	else
-	{
-		return duIntToCol(p->getArea(), alpha);
-	}
-}
-
-static duPolyToColFunc* sPolyToColFunc = &duPolyToColDefault;
-
-void duPolyToColSetCustom(duPolyToColFunc *polyToColFunc)
-{
-	sPolyToColFunc = polyToColFunc;
-}
-
 
 static float distancePtLine2d(const float* pt, const float* p, const float* q)
 {
